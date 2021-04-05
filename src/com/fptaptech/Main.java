@@ -17,8 +17,9 @@ public class Main {
             System.out.println("2. Find a contact by name");
             System.out.println("3. Display contacts");
             System.out.println("4. Exit");
-            System.out.print("Enter your option: ");
+            System.out.println("Enter your option: ");
             int option = scanner.nextInt();
+            scanner.nextLine();
             switch (option) {
                 case 1:
                     handleAddNewContact();
@@ -54,7 +55,7 @@ public class Main {
 
     private static void handleFindContactByName() {
         System.out.print("Enter the contact name you want to find: ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         Contact contact = addressBook.findByName(name);
         if (contact != null) {
             System.out.println();
@@ -69,10 +70,16 @@ public class Main {
     }
 
     private static void handleAddNewContact() {
-        System.out.print("Enter a name: ");
-        String name = scanner.next();
-        System.out.print("Enter a phone number: ");
-        String phone = scanner.next();
+        String name = "";
+        do {
+            System.out.println("Enter a name: ");
+            name = scanner.nextLine();
+        } while (name.isEmpty());
+        String phone = "";
+        do {
+            System.out.println("Enter a phone number: ");
+            phone = scanner.nextLine();
+        } while (phone.isEmpty());
 
         addressBook.addContact(name, phone);
         System.out.println();
