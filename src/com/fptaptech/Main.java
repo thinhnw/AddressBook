@@ -17,9 +17,13 @@ public class Main {
             System.out.println("2. Find a contact by name");
             System.out.println("3. Display contacts");
             System.out.println("4. Exit");
-            System.out.println("Enter your option: ");
-            int option = scanner.nextInt();
-            scanner.nextLine();
+            int option = 4;
+            try {
+                System.out.println("Enter your option: ");
+                option = Integer.parseInt(scanner.nextLine());
+            } catch (Exception e) {
+                continue;
+            }
             switch (option) {
                 case 1:
                     handleAddNewContact();
@@ -34,6 +38,7 @@ public class Main {
                     System.exit(0);
                     break;
                 default:
+                    break;
             }
         }
     }
@@ -42,7 +47,8 @@ public class Main {
         HashMap<String, Contact> contacts = addressBook.getAddressBook();
         Iterator iterator = contacts.entrySet().iterator();
 
-        System.out.println("Address Book");
+        System.out.println();
+        System.out.println("            Address Book");
         System.out.println(String.format("%-20s| %s", "Contact name", "Phone number"));
         System.out.println("--------------------|-------------------");
         while (iterator.hasNext()) {
